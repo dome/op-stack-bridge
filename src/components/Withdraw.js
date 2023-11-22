@@ -259,9 +259,17 @@ const Withdraw = () => {
               <MdOutlineSecurity />
             </div>
             <div className='withdraw_title_content'>
-              <h3>Use the official bridge</h3>
-              <p>This usually takes 7 days</p>
-              <p>Bridge any token to Ethereum Mainnet</p>
+              <h3>Important instructions for Withdrawals</h3>
+              <p>OP Stack withdrawals usually take <strong>7 days</strong> to complete.</p>
+              <p>Please follow these instruction carefully:</p>
+              <br />
+              <p>1. Enter amount bellow and sign tx with Metamask</p>
+              <p>2. Go to "View Withdrawals" and find your tx (Up to 30 minutes later)</p>
+              <p>3. Once confirmed, press the "Prove" button</p>
+              <p>4. Wait for 7-day challenge period</p>
+              <p>5. After 7 days, press the "Claim" button to complete tx</p>
+              <br />
+              <p>Learn more about <a href="https://community.optimism.io/docs/developers/bridge/messaging/#understanding-the-challenge-period" target="_blank" style={{color:"white"}}>OP Stack withdrawals</a></p>
             </div>
           </div>
           <div className='deposit_price_wrap'>
