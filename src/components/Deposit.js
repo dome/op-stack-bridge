@@ -149,6 +149,7 @@ const Deposit = () => {
             OptimismPortal: process.env.REACT_APP_OPTIMISM_PORTAL_PROXY,
             L2OutputOracle: process.env.REACT_APP_L2_OUTPUTORACLE_PROXY,
           };
+          const opt = { overrides: { gasLimit: 250000 } };
           const bridges = {
             Standard: {
               l1Bridge: l1Contracts.L1StandardBridge,
@@ -209,6 +210,7 @@ const Deposit = () => {
               process.env.REACT_APP_L1_USDT,
               process.env.REACT_APP_L2_USDT,
               assetValue,
+              opt,
             );
             var getReceiptUSDT = await receiptUSDT.wait();
             if (getReceiptUSDT) {
@@ -237,6 +239,7 @@ const Deposit = () => {
               process.env.REACT_APP_L1_USDC,
               process.env.REACT_APP_L2_USDC,
               assetValue,
+              opt,
             );
             var getReceiptUSDC = await receiptUSDC.wait();
             if (getReceiptUSDC) {
@@ -264,6 +267,7 @@ const Deposit = () => {
               process.env.REACT_APP_L1_DAI,
               process.env.REACT_APP_L2_DAI,
               assetValue,
+              opt,
             );
             var getReceiptDAI = await receiptDAI.wait();
             if (getReceiptDAI) {
@@ -291,6 +295,7 @@ const Deposit = () => {
               process.env.REACT_APP_L1_HYPR,
               process.env.REACT_APP_L2_HYPR,
               assetValue,
+              opt,
             );
             var getReceiptHYPR = await receiptHYPR.wait();
             if (getReceiptHYPR) {
@@ -317,6 +322,7 @@ const Deposit = () => {
               process.env.REACT_APP_L1_FLOKI,
               process.env.REACT_APP_L2_FLOKI,
               assetValue,
+              opt,
             );
             var getReceiptFLOKI = await receiptFLOKI.wait();
             if (getReceiptFLOKI) {
@@ -343,6 +349,7 @@ const Deposit = () => {
               process.env.REACT_APP_L1_YGG,
               process.env.REACT_APP_L2_YGG,
               assetValue,
+              opt,
             );
             var getReceiptYGG = await receiptYGG.wait();
             if (getReceiptYGG) {
@@ -369,6 +376,7 @@ const Deposit = () => {
               process.env.REACT_APP_L1_BEAM,
               process.env.REACT_APP_L2_BEAM,
               assetValue,
+              opt,
             );
             var getReceiptBEAM = await receiptBEAM.wait();
             if (getReceiptBEAM) {
