@@ -12,10 +12,10 @@ import { sepolia, mainnet } from "@wagmi/core/chains";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
-var currentChain = sepolia;
+// var currentChain = sepolia;
 
 if (Number(process.env.REACT_APP_L1_CHAIN_ID) === 1) {
-  currentChain = mainnet;
+  // currentChain = mainnet;
 }
 
 export const RACE = {
@@ -42,9 +42,32 @@ export const RACE = {
   },
   testnet: true,
 };
-
+export const TCH = {
+  id: Number(process.env.REACT_APP_L1_CHAIN_ID),
+  name: "TCH",
+  network: "TCH",
+  iconUrl: "https://i.imgur.com/90fZHJQ.png",
+  iconBackground: "#000000",
+  nativeCurrency: {
+    decimals: 18,
+    name: "ETHEREUM",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    default: {
+      http: [process.env.REACT_APP_L1_RPC_URL],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "Hypr Explorer",
+      url: process.env.REACT_APP_L1_EXPLORER_URL,
+    },
+  },
+  testnet: true,
+};
 const { chains, publicClient } = configureChains(
-  [currentChain, RACE],
+  [TCH, RACE],
   [
     jsonRpcProvider({
       rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }),

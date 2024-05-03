@@ -6,6 +6,7 @@ import ReactPaginate from "react-paginate";
 import Account from "./Account";
 const optimismSDK = require("@eth-optimism/sdk");
 const WithdrawAccount = () => {
+
   const [loader, setLoader] = useState();
   const { address, isConnected } = useAccount();
   const [withdrawDetails, setWithdrawDetails] = useState([]);
@@ -63,6 +64,8 @@ const WithdrawAccount = () => {
     const l2Url = process.env.REACT_APP_L2_RPC_URL;
     const l2Provider = new ethers.providers.JsonRpcProvider(l2Url);
     const data = await getCrossChainMessenger.getWithdrawalsByAddress(address);
+    console.log(address)
+    // console.log(data)
     for (let index = 0; index < data.length; index++) {
       let timestamp = (await l2Provider.getBlock(data[index].blockNumber))
         .timestamp;
@@ -116,35 +119,6 @@ const WithdrawAccount = () => {
     return time;
   }
 
-  function getTokenName(address) {
-    if (address === process.env.REACT_APP_L2_HYPR) {
-      return "HYPR"
-    }
-    if (address === process.env.REACT_APP_L2_FLOKI) {
-      return "FLOKI"
-    }
-    if (address === process.env.REACT_APP_L2_BEAM) {
-      return "BEAM"
-    }
-    if (address === process.env.REACT_APP_L2_USDT) {
-      return "USDT"
-    }
-    if (address === process.env.REACT_APP_L2_USDC) {
-      return "HYPR"
-    }
-    if (address === process.env.REACT_APP_L2_HYPR) {
-      return "USDC"
-    }
-    if (address === process.env.REACT_APP_L2_DAI) {
-      return "DAI"
-    }
-    if (address === process.env.REACT_APP_L2_YGG) {
-      return "YGG"
-    }
-
-    return "ETH"
-  }
-
   const handleProve = async (event, transactionHash) => {
     try {
       const index = event.target.getAttribute("data-value");
@@ -188,7 +162,7 @@ const WithdrawAccount = () => {
 
   useEffect(() => {
     if (isConnected) {
-      if (chain.id !== 1) {
+      if (chain.id !== 7) {
         switchNetwork(process.env.REACT_APP_L1_CHAIN_ID);
       } else {
         getWithdraw();
@@ -255,7 +229,6 @@ const WithdrawAccount = () => {
                         transactionHash,
                         amount,
                         messageStatus,
-                        l2Token,
                       } = element;
                       return (
                         <tr key={index}>
@@ -263,7 +236,7 @@ const WithdrawAccount = () => {
                           <td>Withdraw</td>
                           <td>
                             {parseInt(amount._hex, 16) / 1000000000000000000}{" "}
-                            <span>{getTokenName(l2Token)}</span>
+                            ETH
                           </td>
                           <td>{`${transactionHash.slice(0, 8)}...${transactionHash.slice(-8)}`}</td>
                           <td>
